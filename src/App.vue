@@ -1,17 +1,31 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <h1>vue-vuex-persist</h1>
+    <p>sessionState: {{sessionState}} <button @click="set('setSessionState')">set new</button> </p>
+    <p>localState: {{localState}} <button @click="set('setLocalState')">set new</button></p>
+    <p>normalState: {{normalState}} <button @click="set('setNormalState')">set new</button></p>
+    <button @click="reset">reset</button>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue';
+import { mapState, mapMutations } from 'vuex';
 
 export default {
   name: 'app',
-  components: {
-    HelloWorld,
+  computed: {
+    ...mapState(['sessionState', 'localState', 'normalState']),
+  },
+  methods: {
+    ...mapMutations(['setSessionState', 'setLocalState', 'setNormalState']),
+    set(mutation) {
+      this[mutation]('new!!!');
+    },
+    reset() {
+      this.setSessionState('old');
+      this.setLocalState('old');
+      this.setNormalState('old');
+    },
   },
 };
 </script>

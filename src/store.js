@@ -1,16 +1,58 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
+import vueVuexPersist from './vue-vuex-persist';
 
 Vue.use(Vuex);
 
-export default new Vuex.Store({
-  state: {
-
+// 需要保存的state
+const keepInStoreState = {
+  // 生命周期为session的state
+  session: {
+    sessionState: 'old',
   },
-  mutations: {
+  // 生命周期为local的state
+  local: {
+    localState: 'old',
+  },
+};
 
+// 普通state
+const baseStore = {
+  normalState: 'old',
+};
+
+// 原始state
+const combineState = {
+  ...keepInStoreState.session,
+  ...keepInStoreState.local,
+  ...baseStore,
+};
+
+// 真正的state
+const state = vueVuexPersist.init(combineState);
+
+export default new Vuex.Store({
+  state,
+  mutations: {
+    // eslint-disable-next-line
+    setSessionState(state, name) {
+      // eslint-disable-next-line
+      state.sessionState = name
+    },
+    // eslint-disable-next-line
+    setLocalState(state, name) {
+      // eslint-disable-next-line
+      state.localState = name
+    },
+    // eslint-disable-next-line
+    setNormalState(state, name) {
+      // eslint-disable-next-line
+      state.normalState = name
+    },
   },
   actions: {
 
   },
 });
+
+export { keepInStoreState };
