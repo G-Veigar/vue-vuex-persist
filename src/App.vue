@@ -9,6 +9,7 @@
 </template>
 
 <script>
+// eslint-disable-next-line
 import { mapState, mapMutations } from 'vuex';
 
 export default {

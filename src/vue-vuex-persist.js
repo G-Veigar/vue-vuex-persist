@@ -1,19 +1,24 @@
 
 const vuexKeeperPlugin = {
-  install(Vue, store, needKeepData) {
+  install(Vue, store, options) {
     window.addEventListener('beforeunload', () => {
       const sessionState = {};
       const localState = {};
-      if (needKeepData instanceof Array) { // 数组参数
-        Object.keys(needKeepData).forEach((key) => {
+      if (!options) {
+        Object.keys(store.state).forEach((key) => {
           sessionState[key] = store.state[key];
         });
         sessionStorage.setItem('sessionState', JSON.stringify(sessionState));
-      } else if (needKeepData.toString() === '[object Object]') { // 对象参数
-        Object.keys(needKeepData.session).forEach((key) => {
+      } else if (options instanceof Array) { // Array options
+        Object.keys(options).forEach((key) => {
           sessionState[key] = store.state[key];
         });
-        Object.keys(needKeepData.local).forEach((key) => {
+        sessionStorage.setItem('sessionState', JSON.stringify(sessionState));
+      } else if (options.toString() === '[object Object]') { // Object options
+        options.session.forEach((key) => {
+          sessionState[key] = store.state[key];
+        });
+        options.local.forEach((key) => {
           localState[key] = store.state[key];
         });
         sessionStorage.setItem('sessionState', JSON.stringify(sessionState));

@@ -1,11 +1,12 @@
+// eslint-disable-next-line
 import Vue from 'vue';
 import App from './App.vue';
-import store, { keepInStoreState } from './store';
+import store, { superState } from './store';
 import vueVuexPersist from './vue-vuex-persist';
 
 Vue.config.productionTip = false;
 
-Vue.use(vueVuexPersist, store, keepInStoreState);
+Vue.use(vueVuexPersist, store, superState);
 
 new Vue({
   store,

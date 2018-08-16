@@ -1,4 +1,6 @@
+// eslint-disable-next-line
 import Vue from 'vue';
+// eslint-disable-next-line
 import Vuex from 'vuex';
 import vueVuexPersist from './vue-vuex-persist';
 
@@ -14,6 +16,11 @@ const keepInStoreState = {
   local: {
     localState: 'old',
   },
+};
+
+const superState = {
+  session: Object.keys(keepInStoreState.session),
+  local: Object.keys(keepInStoreState.local),
 };
 
 // 普通state
@@ -55,4 +62,4 @@ export default new Vuex.Store({
   },
 });
 
-export { keepInStoreState };
+export { superState };

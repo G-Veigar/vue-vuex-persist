@@ -1173,23 +1173,28 @@ var web_dom_iterable = __webpack_require__("ac6a");
 
 
 var vuexKeeperPlugin = {
-  install: function install(Vue, store, needKeepData) {
+  install: function install(Vue, store, options) {
     window.addEventListener('beforeunload', function () {
       var sessionState = {};
       var localState = {};
 
-      if (needKeepData instanceof Array) {
-        // 数组参数
-        Object.keys(needKeepData).forEach(function (key) {
+      if (!options) {
+        Object.keys(store.state).forEach(function (key) {
           sessionState[key] = store.state[key];
         });
         sessionStorage.setItem('sessionState', JSON.stringify(sessionState));
-      } else if (needKeepData.toString() === '[object Object]') {
-        // 对象参数
-        Object.keys(needKeepData.session).forEach(function (key) {
+      } else if (options instanceof Array) {
+        // Array options
+        Object.keys(options).forEach(function (key) {
           sessionState[key] = store.state[key];
         });
-        Object.keys(needKeepData.local).forEach(function (key) {
+        sessionStorage.setItem('sessionState', JSON.stringify(sessionState));
+      } else if (options.toString() === '[object Object]') {
+        // Object options
+        options.session.forEach(function (key) {
+          sessionState[key] = store.state[key];
+        });
+        options.local.forEach(function (key) {
           localState[key] = store.state[key];
         });
         sessionStorage.setItem('sessionState', JSON.stringify(sessionState));
