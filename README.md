@@ -14,7 +14,7 @@ import Vue from 'vue';
 import store from './store';
 import vueVuexPersist from 'vue-vuex-persist';
 
-Vue.use(vueVuexPersist, store, [options]);
+Vue.use(vueVuexPersist, store, [options]);
 ```
 
 ```javascript
