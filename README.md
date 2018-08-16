@@ -19,7 +19,7 @@ Vue.use(vueVuexPersist, store, keepInStoreState);
 
 ```javascript
 import vueVuexPersist from 'vue-vuex-persist';
-
+
 const defaultState = {
   // state
 };
