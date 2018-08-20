@@ -1,5 +1,7 @@
 # vue-vuex-persist
-> vuex持久化插件
+> vuex持久化插件, Persist Vuex state by Web Storage
+
+基于beforeunload事件，而不是vuex插件，比传统持久化方案效率更高。
 
 ## Installation
 ```

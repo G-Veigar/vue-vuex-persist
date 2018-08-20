@@ -1,6 +1,7 @@
 {
   "name": "vue-vuex-persist",
-  "version": "0.2.1",
+  "version": "1.0.1",
+  "keywords": ["vue", "vuex", "state", "persistence", "persist", "beforeunload", "storage"],
   "main": "dist/vue-vuex-persist.common.js",
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -24,5 +25,6 @@
     "babel-core": "7.0.0-bridge.0",
     "babel-jest": "^23.0.1",
     "vue-template-compiler": "^2.5.17"
-  }
+  },
+  "license": "MIT"
 }
