@@ -20,7 +20,7 @@ import vueVuexPersist from 'vue-vuex-persist';
 
 Vue.use(vueVuexPersist, store, [options]);
 ```
-### 第二步：混合state, 并实例化Store对象
+### 第二步：混合state, 并实例化Store对象
 
 ```javascript
 import vueVuexPersist from 'vue-vuex-persist';
