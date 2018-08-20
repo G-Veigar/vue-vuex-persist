@@ -8,26 +8,31 @@ npm install vue-vuex-persist
 
 ## Usage
 
+### 第一步：注册vue插件
+
 ```javascript
 import Vue from 'vue';
 // vuex store
 import store from './store';
 import vueVuexPersist from 'vue-vuex-persist';
 
-Vue.use(vueVuexPersist, store, [options]);
+Vue.use(vueVuexPersist, store, [options]);
 ```
+### 第二步：混合state, 并实例化Store对象
 
 ```javascript
 import vueVuexPersist from 'vue-vuex-persist';
 
-const defaultState = {
+// 默认state的定义
+const state = {
   // state
 };
 
-const state = vueVuexPersist.init(defaultState);
+// 调用vueVuexPersist.init(state)，将缓存的state属性，覆盖掉默认state属性, 得到一个混合后的state
+const hybridState = vueVuexPersist.init(state);
 
 export default new Vuex.Store({
-  state,
+  state: hybridState,
   mutations: {
     // mutations
   },
