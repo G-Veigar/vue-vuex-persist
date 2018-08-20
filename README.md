@@ -30,7 +30,7 @@ const state = {
   // state
 };
 
-// 调用vueVuexPersist.init(state)，将缓存的state属性，覆盖掉默认state属性, 得到一个混合后的state
+// 调用vueVuexPersist.init(state)，将缓存的state属性，覆盖掉默认state属性, 得到一个混合后的state
 const hybridState = vueVuexPersist.init(state);
 
 export default new Vuex.Store({
